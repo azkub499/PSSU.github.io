@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Инклюзивная школа для детей с ограниченными возможностями">
+    <title>Инклюзивная школа - Образование для каждого ребенка</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            font-size: 16px;
+        }
+
+        /* Accessibility Features */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #000;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 100;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: opacity 0.3s;
+            padding: 0.5rem;
+        }
+
+        nav a:hover,
+        nav a:focus {
+            opacity: 0.8;
+            outline: 2px solid white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #4CAF50;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover,
+        .btn-secondary:focus {
+            background: white;
+            color: #4CAF50;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #4CAF50;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Features Section */
+        .features {
+            background: #f9f9f9;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .feature-card:hover,
+        .feature-card:focus-within {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            color: #4CAF50;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Programs Section */
+        .programs {
+            background: white;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .program-card {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 5px solid #4CAF50;
+            transition: all 0.3s;
+        }
+
+        .program-card:hover,
+        .program-card:focus-within {
+            border-left-width: 10px;
+            transform: translateX(5px);
+        }
+
+        .program-card h3 {
+            color: #4CAF50;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .program-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .program-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .program-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        /* Team Section */
+        .team {
+            background: #f9f9f9;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .team-member:hover,
+        .team-member:focus-within {
+            transform: scale(1.05);
+        }
+
+        .team-photo {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+        }
+
+        .team-info {
+            padding: 1.5rem;
+        }
+
+        .team-info h3 {
+            color: #4CAF50;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .team-info p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-info {
+            background: #f9f9f9;
+            padding: 2.5rem;
+            border-radius: 12px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: #4CAF50;
+        }
+
+        .contact-details h3 {
+            color: #4CAF50;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form {
+            background: #f9f9f9;
+            padding: 2.5rem;
+            border-radius: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: #4CAF50;
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            width: 100%;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .submit-btn:hover,
+        .submit-btn:focus {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover,
+        .footer-links a:focus {
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* High Contrast Mode Support */
+        @media (prefers-contrast: high) {
+            body {
+                background: white;
+                color: black;
+            }
+
+            .feature-card,
+            .program-card {
+                border: 2px solid black;
+            }
+        }
+
+        /* Reduced Motion Support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Перейти к основному содержанию</a>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <div class="logo-icon">🏫</div>
+                <div class="logo-text">
+                    <h1>Инклюзивная школа</h1>
+                    <p>Образование для каждого ребенка</p>
+                </div>
+            </div>
+            <nav aria-label="Основная навигация">
+                <ul>
+                    <li><a href="#main-content">Главная</a></li>
+                    <li><a href="#features">Особенности</a></li>
+                    <li><a href="#programs">Программы</a></li>
+                    <li><a href="#team">Команда</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="main-content">
+        <h2>Каждый ребенок заслуживает качественного образования</h2>
+        <p>Мы создаем безбарьерную среду для обучения и развития детей с особыми образовательными потребностями</p>
+        <div class="cta-buttons">
+            <a href="#contact" class="btn btn-primary">Записаться на экскурсию</a>
+            <a href="#programs" class="btn btn-secondary">Наши программы</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Почему выбирают нас</h2>
+            <p class="section-subtitle">Мы создали уникальную образовательную среду, которая учитывает потребности каждого ребенка</p>
+            
+            <div class="features-grid">
+                <article class="feature-card">
+                    <div class="feature-icon">♿</div>
+                    <h3>Доступная среда</h3>
+                    <p>Полностью адаптированные помещения, пандусы, лифты и специальное оборудование для комфортного обучения</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">👨‍🏫</div>
+                    <h3>Квалифицированные специалисты</h3>
+                    <p>Учителя-дефектологи, логопеды, психологи и тьюторы с многолетним опытом работы</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Индивидуальный подход</h3>
+                    <p>Адаптированные образовательные программы с учетом особенностей каждого ребенка</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Творческое развитие</h3>
+                    <p>Кружки, секции и мастерские для раскрытия талантов и способностей детей</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">🏥</div>
+                    <h3>Медицинское сопровождение</h3>
+                    <p>Постоянный контроль здоровья, реабилитационные процедуры и консультации врачей</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">👨‍👩‍👧</div>
+                    <h3>Работа с семьей</h3>
+                    <p>Консультации для родителей, семейные мероприятия и группы поддержки</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="programs" id="programs">
+        <div class="container">
+            <h2 class="section-title">Образовательные программы</h2>
+            <p class="section-subtitle">Комплексные программы обучения и развития для детей разных возрастов</p>
+            
+            <div class="programs-grid">
+                <article class="program-card">
+                    <h3>🎓 Начальная школа (1-4 классы)</h3>
+                    <ul>
+                        <li>Адаптированная программа ФГОС</li>
+                        <li>Малые классы (до 8 человек)</li>
+                        <li>Логопедические занятия</li>
+                        <li>Арт-терапия и музыкальные занятия</li>
+                        <li>Физическая реабилитация</li>
+                    </ul>
+                </article>
+
+                <article class="program-card">
+                    <h3>📖 Основная школа (5-9 классы)</h3>
+                    <ul>
+                        <li>Углубленное изучение предметов</li>
+                        <li>Профориентационная работа</li>
+                        <li>Компьютерная грамотность</li>
+                        <li>Социальная адаптация</li>
+                        <li>Проектная деятельность</li>
+                    </ul>
+                </article>
+
+                <article class="program-card">
+                    <h3>🌟 Дополнительное образование</h3>
+                    <ul>
+                        <li>Творческие мастерские</li>
+                        <li>Спортивные секции (паралимпийские виды)</li>
+                        <li>Музыкальная школа</li>
+                        <li>Театральная студия</li>
+                        <li>Робототехника и программирование</li>
+                    </ul>
+                </article>
+
+                <article class="program-card">
+                    <h3>💼 Профессиональная подготовка</h3>
+                    <ul>
+                        <li>Компьютерные технологии</li>
+                        <li>Декоративно-прикладное искусство</li>
+                        <li>Кулинария и домоводство</li>
+                        <li>Садоводство и растениеводство</li>
+                        <li>Швейное дело</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="team">
+        <div class="container">
+            <h2 class="section-title">Наша команда</h2>
+            <p class="section-subtitle">Профессионалы, которые делают образование доступным для каждого</p>
+            
+            <div class="team-grid">
+                <article class="team-member">
+                    <div class="team-photo">👩‍🏫</div>
+                    <div class="team-info">
+                        <h3>Елена Иванова</h3>
+                        <p>Директор школы<br>Педагогический стаж: 25 лет</p>
+                    </div>
+                </article>
+
+                <article class="team-member">
+                    <div class="team-photo">👨‍⚕️</div>
+                    <div class="team-info">
+                        <h3>Михаил Петров</h3>
+                        <p>Учитель-дефектолог<br>Высшая категория</p>
+                    </div>
+                </article>
+
+                <article class="team-member">
+                    <div class="team-photo">👩‍💼</div>
+                    <div class="team-info">
+                        <h3>Анна Сидорова</h3>
+                        <p>Педагог-психолог<br>Кандидат психологических наук</p>
+                    </div>
+                </article>
+
+                <article class="team-member">
+                    <div class="team-photo">👨‍🔬</div>
+                    <div class="team-info">
+                        <h3>Дмитрий Козлов</h3>
+                        <p>Логопед-дефектолог<br>Специалист по АВА-терапии</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Свяжитесь с нами</h2>
+            <p class="section-subtitle">Мы ответим на все ваши вопросы и поможем выбрать программу обучения</p>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <article class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <h3>Адрес</h3>
+                            <p>г. Москва, ул. Школьная, д. 15<br>Метро "Университет"</p>
+                        </div>
+                    </article>
+
+                    <article class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-details">
+                            <h3>Телефон</h3>
+                            <p>+7 (495) 123-45-67<br>+7 (800) 555-35-35 (бесплатно)</p>
+                        </div>
+                    </article>
+
+                    <article class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>info@inclusive-school.ru<br>director@inclusive-school.ru</p>
+                        </div>
+                    </article>
+
+                    <article class="contact-item">
+                        <div class="contact-icon">🕐</div>
+                        <div class="contact-details">
+                            <h3>Режим работы</h3>
+                            <p>Пн-Пт: 8:00 - 18:00<br>Сб: 9:00 - 15:00<br>Вс: выходной</p>
+                        </div>
+                    </article>
+                </div>
+
+                <form class="contact-form" aria-label="Форма обратной связи">
+                    <div class="form-group">
+                        <label for="name">Ваше имя *</label>
+                        <input type="text" id="name" name="name" required aria-required="true">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Телефон *</label>
+                        <input type="tel" id="phone" name="phone" required aria-required="true">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interest">Интересующая программа</label>
+                        <select id="interest" name="interest">
+                            <option value="">Выберите программу</option>
+                            <option value="primary">Начальная школа</option>
+                            <option value="middle">Основная школа</option>
+                            <option value="additional">Дополнительное образование</option>
+                            <option value="professional">Профессиональная подготовка</option>
+                            <option value="consultation">Консультация специалиста</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Ваше сообщение</label>
+                        <textarea id="message" name="message" placeholder="Расскажите о потребностях вашего ребенка..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Отправить заявку</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#main-content">Главная</a>
+                <a href="#features">Особенности</a>
+                <a href="#programs">Программы</a>
+                <a href="#team">Команда</a>
+                <a href="#contact">Контакты</a>
+            </div>
+            <p>&copy; 2024 Инклюзивная школа. Все права защищены.</p>
+            <p>Лицензия на образовательную деятельность № 12345 от 01.01.2020</p>
+        </div>
+    </footer>
+
+    <script>
+        // Form submission handler
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            
+            if (name.trim() === '') {
+                alert('Пожалуйста, заполните обязательные поля');
+                return;
+            }
+            
+            alert('Спасибо за вашу заявку, ' + name + '! Мы свяжемся с вами в ближайшее время.');
+            this.reset();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Set focus to target for accessibility
+                    target.setAttribute('tabindex', '-1');
+                    target.focus();
+                }
+            });
+        });
+
+        // Keyboard navigation enhancement
+        document.addEventListener('keydown', function(e) {
+            // Alt + H for Home
+            if (e.altKey && e.key === 'h') {
+                e.preventDefault();
+                document.querySelector('#main-content').scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            // Alt + C for Contact
+            if (e.altKey && e.key === 'c') {
+                e.preventDefault();
+                document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        // High contrast toggle (optional feature)
+        let highContrast = false;
+        document.addEventListener('keydown', function(e) {
+            // Ctrl + Alt + H for high contrast toggle
+            if (e.ctrlKey && e.altKey && e.key === 'h') {
+                e.preventDefault();
+                highContrast = !highContrast;
+                document.body.style.filter = highContrast ? 'contrast(1.5)' : 'none';
+            }
+        });
+    </script>
+</body>
+</html>
